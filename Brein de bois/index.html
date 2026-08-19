@@ -1,0 +1,1735 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain de Bois - Bijoux en bois découpés au laser</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #faf7f2;
+            color: #3e2f1c;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #4a3728;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                margin-left: 25px;
+                transition: color 0.3s;
+                font-weight: 600;
+                cursor: pointer;
+            }
+
+                nav a:hover, nav a.actif {
+                    color: #d4a574;
+                }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://scontent-mrs2-3.xx.fbcdn.net/v/t39.30808-6/772586151_122106869133430146_7199090604967074397_n.jpg?stp=dst-jpg_tt6&cstp=mx1942x809&ctp=s1942x809&_nc_cat=102&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=Dwwk9RE2cIIQ7kNvwGDCNLz&_nc_oc=AdpyANt0wA7Z7kXvBNMTeY-AokD5CnHNTNWhlgnpYdUl9J5dbeszH-P77CXMJMxL7-w&_nc_zt=23&_nc_ht=scontent-mrs2-3.xx&_nc_gid=FJKafTHYfYRYF-nTuyp0CQ&_nc_ss=7b2a8&oh=00_AQEAwLMZnMm3aJb62JXFLNNQcQInIM-N0DmfLNWWUiOMdQ&oe=6A8AAE1E') center/cover;
+            height: 55vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            background-color: #d4a574;
+            color: #3e2f1c;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+            .btn-primary:hover {
+                background-color: #c19256;
+                transform: translateY(-2px);
+            }
+
+        .categorie-section {
+            padding: 60px 50px;
+            text-align: center;
+        }
+
+            .categorie-section h2 {
+                font-size: 2.2rem;
+                margin-bottom: 10px;
+            }
+
+            .categorie-section .sous-titre {
+                color: #8a6640;
+                margin-bottom: 40px;
+                font-size: 1rem;
+            }
+
+        .grid-produits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .carte-produit {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+            .carte-produit:hover {
+                transform: translateY(-5px);
+            }
+
+        .image-principale {
+            width: 70%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .miniatures {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+
+            .miniatures img {
+                width: 55px;
+                height: 55px;
+                object-fit: cover;
+                border-radius: 6px;
+                cursor: pointer;
+                border: 2px solid transparent;
+                transition: border 0.2s, transform 0.2s;
+            }
+
+                .miniatures img:hover {
+                    transform: scale(1.05);
+                }
+
+                .miniatures img.active-thumb {
+                    border: 2px solid #a67c52;
+                }
+
+        .carte-produit h3 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .prix {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #a67c52;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+            .checkbox-container input[type="checkbox"] {
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+                accent-color: #a67c52;
+            }
+
+        .apropos {
+            background-color: #eee3d3;
+            padding: 60px 50px;
+            text-align: center;
+        }
+
+            .apropos p {
+                max-width: 700px;
+                margin: 20px auto 0;
+                line-height: 1.6;
+            }
+
+        .footer {
+            background-color: #4a3728;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+            .footer p {
+                margin: 5px 0;
+            }
+
+        .btn-flottant {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #a67c52;
+            color: white;
+            border: none;
+            padding: 16px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 200;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+            .btn-flottant:hover {
+                background-color: #8a6640;
+                transform: scale(1.05);
+            }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 300;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .modal-overlay.actif {
+                display: flex;
+            }
+
+        .modal-contenu {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .fermer-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+            .fermer-modal:hover {
+                color: #333;
+            }
+
+        .modal-contenu h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-contenu label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: 600;
+        }
+
+        .modal-contenu input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .recap-commande {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #faf7f2;
+            border-radius: 10px;
+        }
+
+            .recap-commande h3 {
+                margin-bottom: 10px;
+                font-size: 1.1rem;
+            }
+
+        #liste-recap {
+            list-style: none;
+        }
+
+            #liste-recap li {
+                display: flex;
+                justify-content: space-between;
+                padding: 5px 0;
+                border-bottom: 1px solid #eee;
+            }
+
+        .total-recap {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .modal-contenu .btn-primary {
+            width: 100%;
+            margin-top: 20px;
+            border: none;
+        }
+
+        .modal-image-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            z-index: 400;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .modal-image-overlay.actif {
+                display: flex;
+            }
+
+            .modal-image-overlay img {
+                max-width: 90%;
+                max-height: 85vh;
+                border-radius: 10px;
+            }
+
+        .fermer-modal-image {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .section-cachee {
+            display: none;
+        }
+
+        .btn-submit-loading {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+
+            nav a {
+                margin: 0 10px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .categorie-section, .apropos {
+                padding: 40px 20px;
+            }
+
+            .btn-flottant {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px 18px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">🌿 Brain de Bois </div>
+        <nav>
+            <a onclick="afficherCategorie('bijoux')" class="lien-nav actif" data-cat="bijoux">Bijoux en bois</a>
+            <a onclick="afficherCategorie('parures')" class="lien-nav" data-cat="parures">Parures en bois</a>
+            <a onclick="afficherCategorie('accessoires')" class="lien-nav" data-cat="accessoires">Accessoires en cuir</a>
+            <a onclick="afficherCategorie('decos')" class="lien-nav" data-cat="decos">Décos en bois</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Des bijoux uniques, sculptés dans le bois</h1>
+            <p>Chaque pièce est découpée au laser avec précision, pour une élégance naturelle et intemporelle.</p>
+            <a href="#bijoux" class="btn-primary">Découvrir la collection</a>
+        </div>
+    </section>
+
+    <section id="bijoux" class="categorie-section">
+        <h2>Bijoux en bois</h2>
+        <p class="sous-titre">Des pièces délicates, découpées au laser avec précision</p>
+        <div class="grid-produits">
+
+            <div class="carte-produit" data-id="1" data-nom="Boucles d'oreilles Feuille" data-prix="45">
+                <img class="image-principale" src="images/boucle/00001.png" alt="teste">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png " class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Boucles d'oreilles Feuille</h3>
+                <p class="prix">45 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+
+            <div class="carte-produit" data-id="2" data-nom="Collier Mandala" data-prix="60">
+                <img class="image-principale" src="images/boucle/00002.png" alt="Collier Mandala">
+                <div class="miniatures">
+                    <img src="images/boucle/00002-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00002-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00002-1.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Collier Mandala</h3>
+                <p class="prix">60 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="1" data-nom="Boucles d'oreilles Feuille" data-prix="45">
+                <img class="image-principale" src="images/boucle/00001.png" alt="teste">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png " class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Boucles d'oreilles Feuille</h3>
+                <p class="prix">45 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="1" data-nom="Boucles d'oreilles Feuille" data-prix="45">
+                <img class="image-principale" src="images/boucle/00001.png" alt="teste">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png " class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Boucles d'oreilles Feuille</h3>
+                <p class="prix">45 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="1" data-nom="Boucles d'oreilles Feuille" data-prix="45">
+                <img class="image-principale" src="images/boucle/00001.png" alt="teste">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png " class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Boucles d'oreilles Feuille</h3>
+                <p class="prix">45 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="1" data-nom="Boucles d'oreilles Feuille" data-prix="45">
+                <img class="image-principale" src="images/boucle/00001.png" alt="teste">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png " class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Boucles d'oreilles Feuille</h3>
+                <p class="prix">45 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="1" data-nom="Boucles d'oreilles Feuille" data-prix="45">
+                <img class="image-principale" src="images/boucle/00001.png" alt="teste">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png " class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Boucles d'oreilles Feuille</h3>
+                <p class="prix">45 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="1" data-nom="Boucles d'oreilles Feuille" data-prix="45">
+                <img class="image-principale" src="images/boucle/00001.png" alt="teste">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png " class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Boucles d'oreilles Feuille</h3>
+                <p class="prix">45 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="1" data-nom="Boucles d'oreilles Feuille" data-prix="45">
+                <img class="image-principale" src="images/boucle/00001.png" alt="teste">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png " class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Boucles d'oreilles Feuille</h3>
+                <p class="prix">45 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="1" data-nom="Boucles d'oreilles Feuille" data-prix="45">
+                <img class="image-principale" src="images/boucle/00001.png" alt="teste">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png " class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Boucles d'oreilles Feuille</h3>
+                <p class="prix">45 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="1" data-nom="Boucles d'oreilles Feuille" data-prix="45">
+                <img class="image-principale" src="images/boucle/00001.png" alt="teste">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png " class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Boucles d'oreilles Feuille</h3>
+                <p class="prix">45 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="1" data-nom="Boucles d'oreilles Feuille" data-prix="45">
+                <img class="image-principale" src="images/boucle/00001.png" alt="teste">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png " class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Boucles d'oreilles Feuille</h3>
+                <p class="prix">45 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="1" data-nom="Boucles d'oreilles Feuille" data-prix="45">
+                <img class="image-principale" src="images/boucle/00001.png" alt="teste">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png " class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Boucles d'oreilles Feuille</h3>
+                <p class="prix">45 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="2" data-nom="Collier Mandala" data-prix="60">
+                <img class="image-principale" src="images/boucle/00001.png" alt="Collier Mandala">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Collier Mandala</h3>
+                <p class="prix">60 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="2" data-nom="Collier Mandala" data-prix="60">
+                <img class="image-principale" src="images/boucle/00001.png" alt="Collier Mandala">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Collier Mandala</h3>
+                <p class="prix">60 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="2" data-nom="Collier Mandala" data-prix="60">
+                <img class="image-principale" src="images/boucle/00001.png" alt="Collier Mandala">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Collier Mandala</h3>
+                <p class="prix">60 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="2" data-nom="Collier Mandala" data-prix="60">
+                <img class="image-principale" src="images/boucle/00001.png" alt="Collier Mandala">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Collier Mandala</h3>
+                <p class="prix">60 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="2" data-nom="Collier Mandala" data-prix="60">
+                <img class="image-principale" src="images/boucle/00001.png" alt="Collier Mandala">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Collier Mandala</h3>
+                <p class="prix">60 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="2" data-nom="Collier Mandala" data-prix="60">
+                <img class="image-principale" src="images/boucle/00001.png" alt="Collier Mandala">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Collier Mandala</h3>
+                <p class="prix">60 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="2" data-nom="Collier Mandala" data-prix="60">
+                <img class="image-principale" src="images/boucle/00001.png" alt="Collier Mandala">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Collier Mandala</h3>
+                <p class="prix">60 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="2" data-nom="Collier Mandala" data-prix="60">
+                <img class="image-principale" src="images/boucle/00001.png" alt="Collier Mandala">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Collier Mandala</h3>
+                <p class="prix">60 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="2" data-nom="Collier Mandala" data-prix="60">
+                <img class="image-principale" src="images/boucle/00001.png" alt="Collier Mandala">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Collier Mandala</h3>
+                <p class="prix">60 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="2" data-nom="Collier Mandala" data-prix="60">
+                <img class="image-principale" src="images/boucle/00001.png" alt="Collier Mandala">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Collier Mandala</h3>
+                <p class="prix">60 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="2" data-nom="Collier Mandala" data-prix="60">
+                <img class="image-principale" src="images/boucle/00001.png" alt="Collier Mandala">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Collier Mandala</h3>
+                <p class="prix">60 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="2" data-nom="Collier Mandala" data-prix="60">
+                <img class="image-principale" src="images/boucle/00001.png" alt="Collier Mandala">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Collier Mandala</h3>
+                <p class="prix">60 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="2" data-nom="Collier Mandala" data-prix="60">
+                <img class="image-principale" src="images/boucle/00001.png" alt="Collier Mandala">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Collier Mandala</h3>
+                <p class="prix">60 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+
+            <div class="carte-produit" data-id="3" data-nom="Bracelet Vagues" data-prix="35">
+                <img class="image-principale" src="images/boucle/00001.png" alt="Bracelet Vagues">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Vagues</h3>
+                <p class="prix">35 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="2" data-nom="Collier Mandala" data-prix="60">
+                <img class="image-principale" src="images/boucle/00001.png" alt="Collier Mandala">
+                <div class="miniatures">
+                    <img src="images/boucle/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/boucle/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Collier Mandala</h3>
+                <p class="prix">60 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="parures" class="categorie-section section-cachee">
+        <h2>Parures en bois</h2>
+        <p class="sous-titre">Ensembles assortis pour une élégance complète</p>
+        <div class="grid-produits">
+
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="4" data-nom="Parure Fleur de Lotus" data-prix="120">
+                <img class="image-principale" src="images/parure/00001.png" alt="Parure Fleur de Lotus">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Parure Fleur de Lotus</h3>
+                <p class="prix">120 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <section id="accessoires" class="categorie-section section-cachee">
+        <h2>Accessoires en cuir</h2>
+        <p class="sous-titre">Le cuir associé au bois pour un style authentique</p>
+        <div class="grid-produits">
+
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="6" data-nom="Bracelet Cuir & Bois" data-prix="40">
+                <img class="image-principale" src="images/cuire/00001.png" alt="Bracelet Cuir & Bois">
+                <div class="miniatures">
+                    <img src="images/cuire/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/cuire/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Bracelet Cuir & Bois</h3>
+                <p class="prix">40 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <section id="decos" class="categorie-section section-cachee">
+        <h2>Décos en bois</h2>
+        <p class="sous-titre">Sublimez votre intérieur avec nos créations en bois</p>
+        <div class="grid-produits">
+
+            <div class="carte-produit" data-id="8" data-nom="Cadre photo Mandala" data-prix="55">
+                <img class="image-principale" src="images/deco/00001.png" alt="Cadre photo Mandala">
+                <div class="miniatures">
+                    <img src="images/deco/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Cadre photo Mandala</h3>
+                <p class="prix">55 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+
+            <div class="carte-produit" data-id="8" data-nom="Cadre photo Mandala" data-prix="55">
+                <img class="image-principale" src="images/deco/00001.png" alt="Cadre photo Mandala">
+                <div class="miniatures">
+                    <img src="images/deco/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Cadre photo Mandala</h3>
+                <p class="prix">55 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+
+            <div class="carte-produit" data-id="8" data-nom="Cadre photo Mandala" data-prix="55">
+                <img class="image-principale" src="images/deco/00001.png" alt="Cadre photo Mandala">
+                <div class="miniatures">
+                    <img src="images/deco/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Cadre photo Mandala</h3>
+                <p class="prix">55 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+
+            <div class="carte-produit" data-id="8" data-nom="Cadre photo Mandala" data-prix="55">
+                <img class="image-principale" src="images/deco/00001.png" alt="Cadre photo Mandala">
+                <div class="miniatures">
+                    <img src="images/deco/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Cadre photo Mandala</h3>
+                <p class="prix">55 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+
+            <div class="carte-produit" data-id="8" data-nom="Cadre photo Mandala" data-prix="55">
+                <img class="image-principale" src="images/deco/00001.png" alt="Cadre photo Mandala">
+                <div class="miniatures">
+                    <img src="images/deco/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Cadre photo Mandala</h3>
+                <p class="prix">55 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+
+            <div class="carte-produit" data-id="8" data-nom="Cadre photo Mandala" data-prix="55">
+                <img class="image-principale" src="images/deco/00001.png" alt="Cadre photo Mandala">
+                <div class="miniatures">
+                    <img src="images/deco/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Cadre photo Mandala</h3>
+                <p class="prix">55 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+
+            <div class="carte-produit" data-id="8" data-nom="Cadre photo Mandala" data-prix="55">
+                <img class="image-principale" src="images/deco/00001.png" alt="Cadre photo Mandala">
+                <div class="miniatures">
+                    <img src="images/deco/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Cadre photo Mandala</h3>
+                <p class="prix">55 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+
+            <div class="carte-produit" data-id="8" data-nom="Cadre photo Mandala" data-prix="55">
+                <img class="image-principale" src="images/deco/00001.png" alt="Cadre photo Mandala">
+                <div class="miniatures">
+                    <img src="images/deco/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Cadre photo Mandala</h3>
+                <p class="prix">55 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+
+            <div class="carte-produit" data-id="8" data-nom="Cadre photo Mandala" data-prix="55">
+                <img class="image-principale" src="images/deco/00001.png" alt="Cadre photo Mandala">
+                <div class="miniatures">
+                    <img src="images/deco/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Cadre photo Mandala</h3>
+                <p class="prix">55 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+
+            <div class="carte-produit" data-id="8" data-nom="Cadre photo Mandala" data-prix="55">
+                <img class="image-principale" src="images/deco/00001.png" alt="Cadre photo Mandala">
+                <div class="miniatures">
+                    <img src="images/deco/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Cadre photo Mandala</h3>
+                <p class="prix">55 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+
+            <div class="carte-produit" data-id="8" data-nom="Cadre photo Mandala" data-prix="55">
+                <img class="image-principale" src="images/deco/00001.png" alt="Cadre photo Mandala">
+                <div class="miniatures">
+                    <img src="images/deco/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Cadre photo Mandala</h3>
+                <p class="prix">55 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+
+            <div class="carte-produit" data-id="8" data-nom="Cadre photo Mandala" data-prix="55">
+                <img class="image-principale" src="images/deco/00001.png" alt="Cadre photo Mandala">
+                <div class="miniatures">
+                    <img src="images/deco/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Cadre photo Mandala</h3>
+                <p class="prix">55 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="8" data-nom="Cadre photo Mandala" data-prix="55">
+                <img class="image-principale" src="images/deco/00001.png" alt="Cadre photo Mandala">
+                <div class="miniatures">
+                    <img src="images/deco/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Cadre photo Mandala</h3>
+                <p class="prix">55 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="8" data-nom="Cadre photo Mandala" data-prix="55">
+                <img class="image-principale" src="images/deco/00001.png" alt="Cadre photo Mandala">
+                <div class="miniatures">
+                    <img src="images/deco/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Cadre photo Mandala</h3>
+                <p class="prix">55 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+            <div class="carte-produit" data-id="8" data-nom="Cadre photo Mandala" data-prix="55">
+                <img class="image-principale" src="images/deco/00001.png" alt="Cadre photo Mandala">
+                <div class="miniatures">
+                    <img src="images/deco/00001-1.png" class="active-thumb" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-2.png" onclick="changerImage(this, event)">
+                    <img src="images/deco/00001-3.png" onclick="changerImage(this, event)">
+                </div>
+                <h3>Cadre photo Mandala</h3>
+                <p class="prix">55 DT</p>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="ajouter-panier">
+                    Ajouter au panier
+                </label>
+            </div>
+</section>
+
+    <section id="apropos" class="apropos">
+        <h2>Notre savoir-faire</h2>
+        <p>Chaque bijou est conçu avec passion dans notre atelier, à partir de bois locaux et durables. La découpe laser nous permet une précision incroyable pour des motifs délicats et uniques.</p>
+    </section>
+
+    <footer id="contact" class="footer">
+        <p>📧 brindebois18@gmail.com | 📞 +216 12 345 678</p>
+        <p>&copy; 2026 Brain de bois  - Tous droits réservés</p>
+    </footer>
+
+    <button id="btn-panier-flottant" class="btn-flottant">
+        🛒 Confirmer la commande <span id="compteur-panier">(0)</span>
+    </button>
+
+    <div id="modal-image" class="modal-image-overlay">
+        <span class="fermer-modal-image" onclick="fermerImageAgrandie()">&times;</span>
+        <img id="image-agrandie" src="" alt="Image agrandie">
+    </div>
+
+    <div id="modal-commande" class="modal-overlay">
+        <div class="modal-contenu">
+            <span id="fermer-modal" class="fermer-modal">&times;</span>
+            <h2>Finaliser votre commande</h2>
+
+            <form id="form-commande" action="https://formspree.io/f/mwlewlqp" method="POST">
+                <label for="nom">Nom complet</label>
+                <input type="text" id="nom" name="nom" required placeholder="Votre nom et prénom">
+
+                <label for="adresse">Adresse de livraison</label>
+                <input type="text" id="adresse" name="adresse" required placeholder="Votre adresse complète">
+
+                <label for="telephone">Numéro de téléphone</label>
+                <input type="tel" id="telephone" name="telephone" required placeholder="XX XXX XXX">
+
+                <label for="email">Adresse e-mail</label>
+                <input type="email" id="email" name="email" required placeholder="votremail@exemple.com">
+
+                <input type="hidden" id="recap-commande-hidden" name="recap_commande">
+                <input type="hidden" id="total-hidden" name="total">
+
+                <div class="recap-commande">
+                    <h3>Récapitulatif de votre commande</h3>
+                    <ul id="liste-recap"></ul>
+                    <p class="total-recap">Total : <span id="total-prix">0</span> DT</p>
+                </div>
+
+                <button type="submit" id="btn-submit" class="btn-primary">Valider la commande</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function afficherCategorie(cat) {
+            document.querySelectorAll('.categorie-section').forEach(sec => {
+                sec.classList.add('section-cachee');
+            });
+            document.getElementById(cat).classList.remove('section-cachee');
+
+            document.querySelectorAll('.lien-nav').forEach(lien => {
+                lien.classList.remove('actif');
+            });
+            document.querySelector(`.lien-nav[data-cat="${cat}"]`).classList.add('actif');
+
+            document.getElementById(cat).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function changerImage(thumb, event) {
+            event.stopPropagation();
+            const carte = thumb.closest('.carte-produit');
+            const imagePrincipale = carte.querySelector('.image-principale');
+            imagePrincipale.src = thumb.src;
+
+            carte.querySelectorAll('.miniatures img').forEach(img => img.classList.remove('active-thumb'));
+            thumb.classList.add('active-thumb');
+        }
+
+        document.querySelectorAll('.image-principale').forEach(img => {
+            img.addEventListener('click', function () {
+                document.getElementById('image-agrandie').src = this.src;
+                document.getElementById('modal-image').classList.add('actif');
+            });
+        });
+
+        function fermerImageAgrandie() {
+            document.getElementById('modal-image').classList.remove('actif');
+        }
+
+        document.getElementById('modal-image').addEventListener('click', function (e) {
+            if (e.target === this) {
+                fermerImageAgrandie();
+            }
+        });
+
+        let panier = [];
+
+        const checkboxes = document.querySelectorAll('.ajouter-panier');
+        const compteurPanier = document.getElementById('compteur-panier');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                const carteProduit = this.closest('.carte-produit');
+                const id = carteProduit.dataset.id;
+                const nom = carteProduit.dataset.nom;
+                const prix = parseFloat(carteProduit.dataset.prix);
+
+                if (this.checked) {
+                    panier.push({ id, nom, prix });
+                } else {
+                    panier = panier.filter(item => item.id !== id);
+                }
+
+                mettreAJourCompteur();
+            });
+        });
+
+        function mettreAJourCompteur() {
+            compteurPanier.textContent = `(${panier.length})`;
+        }
+
+        const btnPanierFlottant = document.getElementById('btn-panier-flottant');
+        const modalCommande = document.getElementById('modal-commande');
+        const fermerModal = document.getElementById('fermer-modal');
+        const listeRecap = document.getElementById('liste-recap');
+        const totalPrix = document.getElementById('total-prix');
+
+        btnPanierFlottant.addEventListener('click', function () {
+            if (panier.length === 0) {
+                alert('Votre panier est vide ! Veuillez sélectionner au moins un produit.');
+                return;
+            }
+            afficherRecap();
+            modalCommande.classList.add('actif');
+        });
+
+        fermerModal.addEventListener('click', function () {
+            modalCommande.classList.remove('actif');
+        });
+
+        modalCommande.addEventListener('click', function (e) {
+            if (e.target === modalCommande) {
+                modalCommande.classList.remove('actif');
+            }
+        });
+
+        function afficherRecap() {
+            listeRecap.innerHTML = '';
+            let total = 0;
+
+            panier.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span>${item.nom}</span><span>${item.prix} DT</span>`;
+                listeRecap.appendChild(li);
+                total += item.prix;
+            });
+
+            totalPrix.textContent = total.toFixed(2);
+        }
+
+        const formCommande = document.getElementById('form-commande');
+        const btnSubmit = document.getElementById('btn-submit');
+
+        formCommande.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const nom = document.getElementById('nom').value;
+
+            let recapTexte = panier.map(item => `${item.nom} - ${item.prix} DT`).join('\n');
+            let total = panier.reduce((acc, item) => acc + item.prix, 0).toFixed(2);
+
+            document.getElementById('recap-commande-hidden').value = recapTexte;
+            document.getElementById('total-hidden').value = total + ' DT';
+
+            btnSubmit.disabled = true;
+            btnSubmit.classList.add('btn-submit-loading');
+            btnSubmit.textContent = 'Envoi en cours...';
+
+            const formData = new FormData(formCommande);
+
+            fetch('https://formspree.io/f/mwlewlqp', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert(`Merci ${nom} ! Votre commande a bien été envoyée. Total : ${total} DT. Nous vous contacterons bientôt.`);
+
+                        panier = [];
+                        checkboxes.forEach(cb => cb.checked = false);
+                        mettreAJourCompteur();
+                        formCommande.reset();
+                        modalCommande.classList.remove('actif');
+                    } else {
+                        alert('Une erreur est survenue lors de l\'envoi. Veuillez réessayer ou nous contacter directement.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur :', error);
+                    alert('Une erreur est survenue lors de l\'envoi. Veuillez réessayer ou nous contacter directement.');
+                })
+                .finally(() => {
+                    btnSubmit.disabled = false;
+                    btnSubmit.classList.remove('btn-submit-loading');
+                    btnSubmit.textContent = 'Valider la commande';
+                });
+        });
+    </script>
+
+</body>
+</html>
